@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Fairfield Library ::: System Administration</title>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+  <h1>System Administration</h1>
+  <nav>
+    <a href="/secured/publisher/list">Publisher</a> |
+    <a href="/secured/book/list">Books</a> |
+    <a>Members</a>
+  </nav>
+  <hr>
+  <h2>List of our Books</h2>
+  <section>
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Book Title</th>
+        <th>Number of Copies</th>
+        <th>Cost price</th>
+        <th>Published Date</th>
+        <th> Name of Publisher</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="book, counter : ${books}">
+        <th th:text="${counter.count}"></th>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.numOfCopies}"></td>
+        <td th:text="${book.costPrice}"></td>
+        <td th:if="${book.datePublished != null}">
+          <p th:text="${book.datePublished}"></p>
+        </td>
+        <td th:if="${book.publisher != null}">
+          <p th:text="${book.publisher}"></p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
